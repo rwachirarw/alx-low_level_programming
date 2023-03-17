@@ -8,13 +8,13 @@
 int main(void)
 {
 int ones, tens;
-for (ones = 0; ones <= 9; ones++)
+for (ones = 0; ones < 10; ones++)
 {
-	for (tens = 0; tens <= 9; tens++)
+	for (tens = ones + 1; tens < 10; tens++)
 	{
 		putchar(ones + '0');
 		putchar(tens + '0');
-		if (tens <= 8)
+		if (ones != 8 || tens != 9)
 		{
 			putchar(',');
 			putchar(' ');
