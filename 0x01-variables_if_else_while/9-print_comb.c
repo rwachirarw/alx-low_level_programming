@@ -19,6 +19,5 @@ for (ones = 0; ones <= 9; ones++)
 	putchar(' ');
 	}
 }
-putchar('\n');
 return (0);
 }
