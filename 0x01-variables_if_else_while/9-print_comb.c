@@ -12,8 +12,11 @@ int ones;
 for (ones = 0; ones <= 9; ones++)
 {
 	putchar(ones + '0');
+	for (ones = 0; ones <= 8; ones++)
+	{
 	putchar(',');
 	putchar(' ');
+	}
 }
 return (0);
 }
