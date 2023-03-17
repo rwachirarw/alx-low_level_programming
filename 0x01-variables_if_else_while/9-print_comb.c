@@ -11,7 +11,7 @@ int ones;
 for (ones = 0; ones <= 9; ones++)
 {
 	putchar(ones + '0');
-	if (ones <= 9)
+	if (ones <= 8)
 	{
 	putchar(',');
 	putchar(' ');
