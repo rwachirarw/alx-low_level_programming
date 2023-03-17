@@ -16,6 +16,7 @@ for (ones = 0; ones <= 9; ones++)
 	{
 	putchar(',');
 	putchar(' ');
+	putchar(' ');
 	}
 }
 return (0);
