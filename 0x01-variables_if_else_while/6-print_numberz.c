@@ -9,12 +9,9 @@
 int main(void)
 {
 int numbers;
-for (numbers = 0; numbers <= 16; numbers++)
+for (numbers = 0; numbers <= 9; numbers++)
 {
-	if (numbers < 10)
-	putchar(numbers + '0');
-	else
-	putchar(numbers - 10 + 'a');
+	putchar(numbers + '0')
 }
 putchar('\n');
 return (0);
