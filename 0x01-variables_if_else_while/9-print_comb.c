@@ -8,16 +8,12 @@
  ***/
 int main(void)
 {
-int ones, tens;
+int ones;
 for (ones = 0; ones <= 9; ones++)
 {
-	for (tens = 0; tens <= 9; tens++)
-	{
 	putchar(ones + '0');
-	putchar(tens + '0');
 	putchar(',');
 	putchar(' ');
-	}
 }
 return (0);
 }
