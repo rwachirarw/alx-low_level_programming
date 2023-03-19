@@ -13,8 +13,8 @@ for (ones = 0; ones <= 9; ones++)
 	putchar(ones + '0');
 	if (ones <= 8)
 	{
-	putchar(',');
-	putchar(' ');
+		putchar(',');
+		putchar(' ');
 	}
 }
 putchar('\n');
