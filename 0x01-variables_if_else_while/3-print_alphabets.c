@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <time.h>
 #include <stdio.h>
 /**
  *** main - Entry point
@@ -8,16 +7,13 @@
  ***/
 int main(void)
 {
-int alphlower;
-int alphupper;
-for (alphlower = 'a'; alphlower <= 'z'; alphlower++)
-{
-	putchar(alphlower);
-}
-for (alphupper = 'A'; alphupper <= 'Z'; alphupper++)
-{
-	putchar(alphupper);
-}
-putchar('\n');
-return (0);
+	int alphlower;
+	int alphupper;
+
+	for (alphlower = 'a'; alphlower <= 'z'; alphlower++)
+		putchar(alphlower);
+	for (alphupper = 'A'; alphupper <= 'Z'; alphupper++)
+		putchar(alphupper);
+	putchar('\n');
+	return (0);
 }
