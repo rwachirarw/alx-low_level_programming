@@ -5,9 +5,8 @@
  *** @n: bhabdh
  *** Return: uhuh
  **/
-int print_last_digit(int)
+int print_last_digit(int n)
 {
-	int n;
 	int lastdig = n % 10;
 	int lastdigit;
 
