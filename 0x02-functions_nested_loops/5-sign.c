@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include "main.h"
 /**
- *** print_sign - print sign
- *** Return
+ *** print_sign - print alphabet
+ *** @n: bhabdh
+ *** Return: uhuh
  **/
 
 int print_sign(int n)
