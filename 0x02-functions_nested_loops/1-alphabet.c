@@ -11,10 +11,9 @@ int main(void)
 	_putchar('\n');
 	return (0);
 }
-void print_alphabet()
+void print_alphabet(void)
 {
 	char alph;
 	for(alph = 'a'; alph<='z'; alph++)
 		_putchar(alph);
-	return (0);
 }
