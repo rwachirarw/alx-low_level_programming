@@ -4,7 +4,7 @@
 void print_number(int arr[], int size)
 {
 	/* Loop through the array from the most significant digit to the least */
-	for (int i = 0; i < size; i++)
+	for(int i = 0; i < size; i++)
 	{
 		/* Print the digit using putchar function */
 		putchar(arr[i] + '0');
@@ -18,7 +18,7 @@ void add_numbers(int a[], int b[], int c[], int size)
 	int carry = 0;
 
 	/* Loop through the arrays from the least significant digit to the most */
-	for (int i = size - 1; i >= 0; i--)
+	for(int i = size - 1; i >= 0; i--)
 	{
 		/* Add the digits and the carry and store the result in c[i] */
 		c[i] = a[i] + b[i] + carry;
@@ -40,7 +40,7 @@ void add_numbers(int a[], int b[], int c[], int size)
 void copy_array(int src[], int dest[], int size)
 {
 	/* Loop through the arrays and copy each element */
-	for (int i = 0; i < size; i++)
+	for(int i = 0; i < size; i++)
 	{
 		dest[i] = src[i];
 	}
@@ -117,4 +117,3 @@ int main(void)
 
 	return(0);
 }
-```
