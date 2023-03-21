@@ -7,15 +7,17 @@
  **/
 void jack_bauer(void)
 {
-	int i = 0, j = 0;
+	char i = 0, j = 0;
 
 	while(i < 24)
 	{
-		_putchar(i + 48);
-		_putchar(':');
 		while(j < 60)
 		{
-			_putchar(j + 48);
+			_putchar((i / 10) + 48);
+			_putchar((i % 10) + 48);
+			_putchar('\n');
+			_putchar((i / 10) + 48);
+			_putchar((i % 10) + 48);
 			_putchar('\n');
 			j++;
 		}
