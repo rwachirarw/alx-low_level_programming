@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include "main.h"
 /**
- *** _islower - print alphabet
- *** Return
+ *** _islower - checks for lower character
+ *** Return: 1 if c is lowercae, 0 otherwise
+ *** @c: the character to check
  **/
 
 int _islower(int c)
