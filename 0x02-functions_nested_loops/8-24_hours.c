@@ -16,7 +16,7 @@ void jack_bauer(void)
 		while(j < 60)
 		{
 			_putchar(j + 48);
-			_putchar('/n');
+			_putchar('\n');
 			j++;
 		}
 		i++;
