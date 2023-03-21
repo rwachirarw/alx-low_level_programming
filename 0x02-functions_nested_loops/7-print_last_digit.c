@@ -7,8 +7,15 @@
  **/
 int print_last_digit(int n)
 {
-	int lastdig = n % 10;
+	int lastdig;
 
+	if (n < 0)
+	{
+		lastdig = -(n % 10);
+		_putchar(lastdig + 48);
+		return (lastdig));
+	}
+	lastdig = n % 10;
 	_putchar(lastdig + 48);
 	return (lastdig);
 }
