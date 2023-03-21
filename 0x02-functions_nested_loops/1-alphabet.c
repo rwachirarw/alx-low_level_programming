@@ -2,10 +2,11 @@
 #include "main.h"
 /**
  *** main - Entry point
- *** Description: Print alphabet in small letters
+ *** print_alphabet - print alphabet
  *** Return
  ***/
-void print_alphabet(void)
+
+print_alphabet(void)
 {
 	char alph;
 
