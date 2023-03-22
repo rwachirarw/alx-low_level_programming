@@ -13,7 +13,7 @@ int main(void)
 
 	a = 972;
 	b = 980;
-	c = 0;
+	c = 1110;
 
 	largest = largest_number(a, b, c);
 
