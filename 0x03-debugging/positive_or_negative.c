@@ -1,7 +1,9 @@
 #include "main.h"
+
 /**
- **
- **
+ ** positive_or_negative -Positive, negative os zero
+ ** @i:value to test
+ ** Return: Positive, negative os zero
  **/
 
 void positive_or_negative(int i)
