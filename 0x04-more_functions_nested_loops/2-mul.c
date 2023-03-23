@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * mul - checks for a digit (0 through 9)
- * @a: interger to multiply
- * @b: interger to multiply
+ * mul - multiplies two integers
+ * @a: integer to be multiplied
+ * @b: integer to be multiplied
  * Return: multiplication
  */
 
