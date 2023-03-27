@@ -1,4 +1,3 @@
-#include "main.h"
 #include <stdio.h>
 
 /**
@@ -9,12 +8,24 @@
 
 void rev_string(char *s)
 {
-	int i = 0;
+	char smp;
+	int i, num, num2;
 
-	for (i = s[10]; i >= s[0]; i--)
+	num = 0;
+	num = 0;
+
+	while (s[num] != '\0')
 	{
-		_putchar(s[i]);
+		num++;
 	}
-	_putchar('\n');
+
+	num2 = num - 1;
+
+	for (i = 0; i < num / 2; i++)
+	{
+		smp = s[i];
+		s[i] = s[num2];
+		s[num2--] = smp;
+	}
 }
 
