@@ -9,3 +9,6 @@ int _sqrt_recursion(int n);
 int _sqrt_checker(int n, int i);
 int is_prime_number(int n);
 int is_prime_checker(int n, int i);
+int is_palindrome(char *s);
+int _strlen(char *s);
+int wildcmp(char *s1, char *s2);
