@@ -8,23 +8,39 @@
 
 int is_palindrome(char *s)
 {
-	static int i = 0;
-	static int len = 0;
+	int len;
 
-	if (*s != '\0') {
-		len++;
-		is_palindrome(s + 1);
-	}
+	len = length(s);
 
-	if (i >= len / 2) {
-		return (1);
-	}
+	return (is_palindrome_recursive(s, 0, len - 1));
+}
 
-	if (s[i] != s[len - i - 1]) {
+/**
+ * length - returns the length of a string
+ * @s: string
+ * Return: integer
+ */
+
+int length(char *s)
+{
+	if (*s == '\0')
 		return (0);
-	}
+	return (1 + length(s + 1));
+}
 
-	i++;
+/**
+ * is_palindrome_recursive - acts as a palindrome helper
+ * @s: string pointer
+ * @start: start of the string
+ * @end: end of the string
+ * Return: integer
+ */
 
-	return (1);
+int is_palindrome_recursive(char *s, int start, int end)
+{
+	if (start >= end)
+		return (1);
+	if (s[start] != s[end])
+		return (0);
+	return (is_palindrome_recursive(s, start + 1, end - 1));
 }
