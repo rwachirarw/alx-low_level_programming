@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 /**
  *main-program start
  *@argc: argument count
@@ -7,14 +6,11 @@
  *Return: interger
  */
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-	int i, count = 0;
+	int i = 0;
 
 	for (i = 0; i < argc; i++)
-	{
-		count = *argv[i];
-	}
-	printf("%d\n", count);
+		printf("%s\n", argv[i]);
 	return (0);
 }
