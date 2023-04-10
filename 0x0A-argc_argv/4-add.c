@@ -8,19 +8,20 @@
  *@argv: array size of argc
  * Return: Always 0.
  */
-int main(int argc, char *argv[])
-{/*atoi function converts a string to integer*/
-	int i;/*iterates over command arguments*/
-	int sum = 0;/*hold sum of numbers*/
 
-	for (i = 1; i < argc; i++)/*we start with 1 cz 0 holds program name*/
+int main(int argc, char *argv[])
+{
+	int sum = 0, i;
+	char *endptr;
+
+	for (i = 1; i < argc; i++)
 	{
-		if (*argv[i] < '0' || *argv[i]> '9')/*means not digit*/
+		sum += strtol(argv[i], &endptr, 10);
+		if (*endptr != '\0')
 		{
 			printf("Error\n");
 			return (1);
 		}
-		sum = sum + atoi(argv[i]);
 	}
 	printf("%d\n", sum);
 	return (0);
