@@ -2,8 +2,7 @@
 #include <stdlib.h>
 
 /**
- * main - a program that prints the minimum number
- * of coins to make change for an amount of money
+ * main - rints the minimum number for change
  *@argc: number of arguments
  *@argv: strings
  *Return: 1 or 0
@@ -46,8 +45,8 @@ int main(int argc, char *argv[])
 		count += cents / 2;
 		cents %= 2;
 	}
-	count += cents;
 
+	count += cents;
 	printf("%d\n", count);
 	return (0);
 }
