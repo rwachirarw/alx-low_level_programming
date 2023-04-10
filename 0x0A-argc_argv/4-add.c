@@ -1,5 +1,7 @@
 #include<stdio.h>
-#include<stdlib.h>/*atoi function library*/
+#include<stdlib.h>
+#include<ctype.h>
+/*atoi function library*/
 /**
  * main - adds positive numbers.
  *@argc: number of arguments
@@ -13,7 +15,7 @@ int main(int argc, char *argv[])
 
 	for (i = 1; i < argc; i++)/*we start with 1 cz 0 holds program name*/
 	{
-		if (!isdigit(argv[i]))/*means not digit*/
+		if (!isdigit(*argv[i]))/*means not digit*/
 		{
 			printf("Error\n");
 			return (1);
