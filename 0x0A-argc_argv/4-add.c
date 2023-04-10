@@ -1,21 +1,19 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-
+#include<stdio.h>
+#include<stdlib.h>/*atoi function library*/
 /**
- *main-program start
- *@argc: argument count
- *@argv: argument array
- *Return: interger
+ * main - adds positive numbers.
+ *@argc: number of arguments
+ *@argv: array size of argc
+ * Return: Always 0.
  */
-
 int main(int argc, char *argv[])
-{
-	int sum = 0, i;
+{/*atoi function converts a string to integer*/
+	int i;/*iterates over command arguments*/
+	int sum = 0;/*hold sum of numbers*/
 
-	for (i = 1; i < argc; i++)
+	for (i = 1; i < argc; i++)/*we start with 1 cz 0 holds program name*/
 	{
-		if (!isdigit(*argv[i]))
+		if (!isdigit(argv[i]))/*means not digit*/
 		{
 			printf("Error\n");
 			return (1);
