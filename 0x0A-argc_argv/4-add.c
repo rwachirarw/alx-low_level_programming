@@ -13,8 +13,6 @@ int main(int argc, char *argv[])
 {
 	int sum = 0, i;
 
-	if (argc == 1)
-		printf("0\n");
 	for (i = 1; i < argc; i++)
 	{
 		if (!isdigit(*argv[i]))
