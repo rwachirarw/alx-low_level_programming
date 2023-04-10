@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 
 	for (i = 1; i < argc; i++)/*we start with 1 cz 0 holds program name*/
 	{
-		if (!isdigit(*argv[i]))/*means not digit*/
+		if (*argv[i] < '0' || *argv[i]> '9')/*means not digit*/
 		{
 			printf("Error\n");
 			return (1);
