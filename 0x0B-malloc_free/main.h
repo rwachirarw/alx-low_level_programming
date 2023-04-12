@@ -5,3 +5,5 @@ char *_memcpy(char *dest, char *src, unsigned int n);
 char *str_concat(char *s1, char *s2);
 int **alloc_grid(int width, int height);
 void free_grid(int **grid, int height);
+char *_strcpy(char *dest, char *src);
+char *argstostr(int ac, char **av);
