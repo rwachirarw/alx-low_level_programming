@@ -10,8 +10,8 @@
 char **strtow(char *str)
 {
 	int i, j, k;
-	int num_words;
-	char **words;
+	int num_words = 0;
+	char **words = NULL;
 
 	if (str == NULL || *str == '\0')
 		return (NULL);
