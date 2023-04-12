@@ -2,8 +2,9 @@
 #include "main.h"
 
 /**
- *strtow - splits a string into words
+ *strtow-splits a string into words
  *@str: the string
+ *Return: pointer to an array of strings(words)
  */
 
 char **strtow(char *str)
@@ -12,44 +13,40 @@ char **strtow(char *str)
 	int num_words;
 	char **words;
 
-	if (str == NULL || *str == '\0') {
-		return NULL;
-	}
-
-	num_words = count_words(str);
+	if (str == NULL || *str == '\0')
+		return (NULL);
 
 	words = malloc((num_words + 1) * sizeof(char *));
-	if (words == NULL) {
-		return NULL;
-	}
+	if (words == NULL)
+		return (NULL);
 
-	for (i = 0, j = 0; i < num_words; i++) {
-		while (str[j] == ' ' || str[j] == '\t' || str[j] == '\n') {
+	for (i = 0, j = 0; i < num_words; i++)
+	{
+		while (str[j] == ' ' || str[j] == '\t' || str[j] == '\n')
 			j++;
-		}
 
 		k = j;
 
-		while (str[j] != ' ' && str[j] != '\t' && str[j] != '\n' && str[j] != '\0') {
+		while (str[j] != ' ' && str[j] != '\t' && str[j] != '\n' && str[j] != '\0')
 			j++;
-		}
 
 		words[i] = malloc((j - k + 1) * sizeof(char));
-		if (words[i] == NULL) {
-			for (i--; i >= 0; i--) {
+		if (words[i] == NULL)
+		{
+			for (i--; i >= 0; i--)
 				free(words[i]);
-			}
+
 			free(words);
-			return NULL;
+			return (NULL);
 		}
 
 		_strncpy(words[i], str + k, j - k);
 		words[i][j - k] = '\0';
 	}
 
-	words[num_words] = NULL;
+	words[num_words] = (NULL);
 
-	return words;
+	return (words);
 }
 
 /**
@@ -58,27 +55,30 @@ char **strtow(char *str)
  *Return: the count of the words in int
  */
 
-int count_words(char *str) {
+int count_words(char *str)
+{
 	int i;
 	int count = 0;
 	int in_word = 0;
 
-	for (i = 0; str[i] != '\0'; i++) {
-		if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n') {
-			if (in_word) {
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
+		{
+			if (in_word)
+			{
 				count++;
 				in_word = 0;
 			}
-		} else {
-			in_word = 1;
 		}
+		else
+			in_word = 1;
 	}
 
-	if (in_word) {
+	if (in_word)
 		count++;
-	}
 
-	return count;
+	return (count);
 }
 /**
  * _strncpy - copies a string
