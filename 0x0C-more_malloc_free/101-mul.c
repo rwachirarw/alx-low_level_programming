@@ -3,8 +3,8 @@
 
 /**
  * main - program start
- * @num1: first input
- * @num2: second input
+ * @argc: argument count
+ * @argv: argument vector
  * Return: multiplication of num1 and num2
  */
 
