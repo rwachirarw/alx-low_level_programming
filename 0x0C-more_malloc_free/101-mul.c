@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 	if (argc != 3)
 	{
 		printf("Error\n");
-		return (98);
+		exit(98);
 	}
 
 	for (i = 0; argv[1][i]; i++)
@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 		if (argv[1][i] < '0' || argv[1][i] > '9')
 		{
 			printf("Error\n");
-			return (98);
+			exit(98);
 		}
 	}
 
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 		if (argv[2][i] < '0' || argv[2][i] > '9')
 		{
 			printf("Error\n");
-			return (98);
+			exit(98);
 		}
 	}
 
