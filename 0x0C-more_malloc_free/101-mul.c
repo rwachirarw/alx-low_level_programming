@@ -29,6 +29,8 @@ int main(int argc, char **argv)
 
 	_print_result(result);
 
+	free(result);
+
 	return (0);
 }
 
