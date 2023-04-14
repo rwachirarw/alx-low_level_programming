@@ -14,3 +14,4 @@ void _print_error(void);
 void _print_result(char *result);
 char *_multiply(char *num1, char *num2);
 int _putchar(char c);
+void print_result(int *result, int len);
