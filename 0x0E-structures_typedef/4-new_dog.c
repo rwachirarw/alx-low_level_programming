@@ -21,7 +21,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 		return (NULL);
 
 	copy_owner = malloc(strlen(owner) + 1);
-	if (copy_name == NULL)
+	if (copy_owner == NULL)
 		return (NULL);
 
 	ptr_dog = malloc(sizeof(dog_t));
