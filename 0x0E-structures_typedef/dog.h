@@ -21,4 +21,5 @@ void print_dog(struct dog *d);
   *dog_t - type definition for strucy dog
   */
 typedef struct dog dog_t;
+dog_t *new_dog(char *name, float age, char *owner);
 #endif
