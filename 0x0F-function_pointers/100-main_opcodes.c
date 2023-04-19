@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+void print_opcodes(char *addr, int n);
 /**
  * main - program start
  * @argc: argument count
  * @argv: argument vector
  * Return: integer
  */
-void print_opcodes(char *addr, int n);
 
 int main(int argc, char **argv)
 {
