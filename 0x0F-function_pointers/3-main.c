@@ -1,15 +1,16 @@
 #include "3-calc.h"
 
 /**
-  * main - start of the program
-  * @argc: argument coint
-  * @argv: arguments
-  * Return: 0
-  */
+ * main - start of the program
+ * @argc: argument coint
+ * @argv: arguments
+ * Return: 0
+ */
 
 int main(int argc, char *argv[])
 {
 	int num1 = 0, num2 = 0, get_results;
+	int (*operator)(int, int);
 
 
 
@@ -19,15 +20,21 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	if (!(argv[2] == "+" || argv[2] == "-" || argv[2] == "*" || argv[2] == "/" || argv[2] == "%"))
+	operator = get_op_func(argv[2]);
+
+
+	if (operator == NULL || argv[2][1] != '\0')
 	{
 		printf("Error\n");
 		exit(99);
 	}
 
-	operator = argv[2];
 	num1 = atoi(argv[1]);
 	num2 = atoi(argv[3]);
 
-	get_results = get_op_func(operator)(num1, num2);
+	get_results = operator(num1, num2);
+
+	printf("%d\n", get_results);
+
+	return (0);
 }

@@ -22,10 +22,12 @@ int (*get_op_func(char *s))(int, int)
 		return (NULL);*/
 	i = 0;
 
-	while (ops[i] < 6)
+	while (ops[i].op != NULL)
 	{
-		if (s == ops[i][0])
-			return (ops[i]);
+		if (*s == *ops[i].op)
+			return (*ops[i].f);
 		++i;
 	}
+	return (NULL);
+	
 }
