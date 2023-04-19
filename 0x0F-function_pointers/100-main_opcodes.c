@@ -7,6 +7,7 @@
  * @argv: argument vector
  * Return: integer
  */
+void print_opcodes(char *addr, int n);
 
 int main(int argc, char **argv)
 {
