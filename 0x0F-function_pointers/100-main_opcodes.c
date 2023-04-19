@@ -1,5 +1,12 @@
 #include <stdio.h>
 
+/**
+  * print_opcodes - prints opcodes
+  * @addr: address
+  * @n: integer
+  * Return: void
+  */
+
 void print_opcodes(char *addr, int n)
 {
 	int i;
@@ -9,22 +16,31 @@ void print_opcodes(char *addr, int n)
 	printf("\n");
 }
 
+/**
+  * main - program start
+  * @argc: argument count
+  * @argv: argument vector
+  * Return: integer
+  */
+
 int main(int argc, char **argv)
 {
 	int n;
 
-	if (argc != 2) {
+	if (argc != 2)
+	{
 		printf("Error\n");
-		return 1;
+		return (1);
 	}
 
 	n = atoi(argv[1]);
-	if (n <= 0) {
+	if (n <= 0)
+	{
 		printf("Error\n");
-		return 2;
+		return (2);
 	}
 
 	print_opcodes((char *)main, n);
 
-	return 0;
+	return (0);
 }
