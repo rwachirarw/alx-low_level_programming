@@ -107,18 +107,6 @@ char *_multiply(char *num1, char *num2)
 }
 
 /**
- * _print_result - prints
- * @result: result to be printed
- * Return: void
- */
-
-void _print_result(char *result)
-{
-	_puts(result);
-	_putchar('\n');
-}
-
-/**
  * _print_error - prints error
  * Return: void
  */
