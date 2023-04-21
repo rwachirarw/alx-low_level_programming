@@ -2,8 +2,8 @@
 
 /**
  * main - program start
- * @num1: first input
- * @num2: second input
+ * @argc: count
+ * @argv: input array
  * Return: multiplication of num1 and num2
  */
 
@@ -11,6 +11,7 @@ int main(int argc, char **argv)
 {
 	int i, j, num1_len, num2_len;
 	int *result;
+
 	if (argc != 3 || !_isdigit(argv[1]) || !_isdigit(argv[2]))
 		_print_error();
 
@@ -61,51 +62,6 @@ void print_result(int *result, int len)
 		printf("%d", result[i]);
 	printf("\n");
 }
-
-/**
- *_multiply - multiplies two positive numbers
- *@num1: first number
- *@num2: second number
- *Return: Multiplication of num1 and num2
- */
-
-char *_multiply(char *num1, char *num2)
-{
-	int len1 = _strlen(num1);
-	int len2 = _strlen(num2);
-	int len_result = len1 + len2;
-	int i, j;
-	int carry, sum;
-	char *result;
-
-	result = malloc(sizeof(char) * (len_result + 1));
-	if (result == NULL)
-		return (NULL);
-
-	for (i = 0; i < len_result; i++)
-		result[i] = '0';
-	result[len_result] = '\0';
-
-	for (i = len1 - 1; i >= 0; i--)
-	{
-		carry = 0;
-		for (j = len2 - 1; j >= 0; j--)
-		{
-			sum = (num1[i] - '0') * (num2[j] - '0') + carry + (result[i + j + 1] - '0');
-			carry = sum / 10;
-			result[i + j + 1] = (sum % 10) + '0';
-		}
-		result[i] += carry;
-	}
-
-	while (*result == '0' && *(result + 1) != '\0')
-		result++;
-
-	return (result);
-
-	free(result);
-}
-
 /**
  * _print_error - prints error
  * Return: void
@@ -113,24 +69,8 @@ char *_multiply(char *num1, char *num2)
 
 void _print_error(void)
 {
-	_puts("Error");
-	_putchar('\n');
+	printf("Error\n");
 	exit(98);
-}
-
-/**
- * _puts - prints a string
- * @s: string to be printed
- * Return: void
- */
-
-void _puts(char *s)
-{
-	while (*s != '\0')
-	{
-		_putchar(*s);
-		s++;
-	}
 }
 
 /**
