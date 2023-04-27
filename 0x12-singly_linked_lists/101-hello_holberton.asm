@@ -1,20 +1,17 @@
-; File: 101-hello_holberton.asm
-section .data
-msg db 'Hello, Holberton', 0x0A
+section .data           ; Data section, initialized variables
+msg:    db "Hello, Holberton", 0 ; C string needs 0
+fmt:    db "%s", 10, 0          ; The printf format, "\n", '\0'
 
-section .text
-global _start
+section .text           ; Code section.
+global _start           ; the standard gcc entry point
 
-_start:
-; write(1, msg, 16)
-mov eax, 1       ; System call for write
-mov edi, 1       ; File descriptor for stdout
-mov rsi, msg     ; Address of the message
-mov edx, 16      ; Message length
-syscall
+_start:                 ; the program label for the entry point
+mov rdi, fmt        ; first argument: pointer to the format string
+mov rsi, msg        ; second argument: pointer to the message string
+mov rax, 0          ; clear rax register for using printf
+call printf         ; call the C function printf
 
-; exit(0)
-mov eax, 60      ; System call for exit
-xor edi, edi     ; Exit status
-syscall
+mov rax, 60         ; system call for exit
+xor rdi, rdi        ; clear rdi register
+syscall             ; call kernel
 
