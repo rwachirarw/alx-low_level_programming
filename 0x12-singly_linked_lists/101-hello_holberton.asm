@@ -1,21 +1,30 @@
-extern	printf		; the C function, to be called
+; Use "global _start" instead of "global main" for Linux systems
+global main
 
-section .data		; Data section, initialized variables
-msg:		db "Hello, Holberton", 0 ; C string needs 0
-fmt:	    	db "%s", 10, 0          ; The printf format, "\n",'0'
+; Declare external C function
+extern printf
 
-section .text		; Code section.
+section .data
+msg db "Hello, Holberton", 0   ; Null-terminated string
+fmt db "%s", 10, 0             ; Format string for printf (newline and null terminator)
 
-global main		; the standard gcc entry point
-main:					; the program label for the entry point
-push    rbp		; set up stack frame, must be alligned
+section .text
+; Entry point for program
+; Set up stack frame
+push rbp
+mov rbp, rsp
 
-mov	rdi,fmt
-mov	rsi,msg
-mov	rax,0		; or can be  xor  rax,rax
-call    printf		; Call C function
+; Call printf function
+mov rdi, fmt    ; First argument: format string
+mov rsi, msg    ; Second argument: message string
+xor eax, eax    ; Clear eax register (same as mov eax, 0)
+call printf     ; Call the C printf function
 
-pop	rbp		; restore stack
+; Clean up stack frame
+mov rsp, rbp
+pop rbp
 
-mov	rax,0		; normal, no error, return value
-ret			; return
+; Return 0
+xor eax, eax    ; Set eax register to 0 (same as mov eax, 0)
+ret             ; Return from main function
+
