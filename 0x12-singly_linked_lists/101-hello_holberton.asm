@@ -1,4 +1,4 @@
-; File: hello.asm
+; File: 101-hello_holberton.asm
 section .data
 msg db 'Hello, Holberton', 0x0A
 
