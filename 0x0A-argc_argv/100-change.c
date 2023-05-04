@@ -3,6 +3,7 @@
 
 /**
  * main - rints the minimum number for change
+}
  *@argc: number of arguments
  *@argv: strings
  *Return: 1 or 0
