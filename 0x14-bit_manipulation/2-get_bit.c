@@ -3,7 +3,7 @@
 /**
  * get_bit - returns the value of a bit at a given index.
  * @index: index
- * @n: integet to be used 
+ * @n: integet to be used
  * Return: The value of the bit
  */
 
