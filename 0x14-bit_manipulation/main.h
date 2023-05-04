@@ -4,6 +4,19 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * union - union
+ * @i: integer
+ * @c: char
+ *
+ * Description: union with an intiger and character members
+ * 
+ */
+union {
+	unsigned int i;
+	char c[sizeof(unsigned int)];
+} u;
+
 unsigned int binary_to_uint(const char *b);
 void print_binary(unsigned long int n);
 int _putchar(char c);
