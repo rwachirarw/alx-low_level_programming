@@ -5,14 +5,15 @@
 #include <string.h>
 
 /**
- * union - union
+ * union un - union
  * @i: integer
  * @c: char
  *
  * Description: union with an intiger and character members
- * 
  */
-union {
+
+union un
+{
 	unsigned int i;
 	char c[sizeof(unsigned int)];
 } u;
