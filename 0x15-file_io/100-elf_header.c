@@ -32,11 +32,10 @@ void print_magic(unsigned char *e_ident)
 	{
 		printf("%02x", e_ident[index]);
 
-		if (index == EI_NIDENT - 1)
-			printf("\n");
-		else
+		if (index != EI_NIDENT - 1)
 			printf(" ");
 	}
+	printf(" ");
 }
 
 /**
