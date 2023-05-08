@@ -35,7 +35,7 @@ void print_magic(unsigned char *e_ident)
 		if (index != EI_NIDENT - 1)
 			printf(" ");
 	}
-	printf(" ");
+	printf("\n");
 }
 
 /**
