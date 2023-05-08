@@ -1,25 +1,61 @@
-#include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <elf.h>
 
 /**
- * print_elf_header - prints the information contained in an ELF header
- * @ehdr: pointer to an ELF header
+ * print_magic - prints the magic numbers of an ELF header
+ * @e_ident: ELF header identifier
  */
-void print_elf_header(Elf64_Ehdr *ehdr)
+void print_magic(unsigned char *e_ident)
 {
 	ssize_t n;
 
 	printf("Magic:   ");
 	for (n = 0; n < EI_NIDENT; n++)
-		printf("%02x ", ehdr->e_ident[n]);
+		printf("%02x ", e_ident[n]);
 	printf("\n");
+}
+
+/**
+ * print_class - prints the class of an ELF header
+ * @e_ident: ELF header identifier
+ */
+void print_class(unsigned char *e_ident)
+{
 	printf("Class:                             ");
-	printf("%s\n", ehdr->e_ident[EI_CLASS] == ELFCLASS64 ? "ELF64" : "ELF32");
+	printf("%s\n", e_ident[EI_CLASS] == ELFCLASS64 ? "ELF64" : "ELF32");
+}
+
+/**
+ * print_data - prints the data encoding of an ELF header
+ * @e_ident: ELF header identifier
+ */
+void print_data(unsigned char *e_ident)
+{
 	printf("Data:                              ");
-	printf("%s\n", ehdr->e_ident[EI_DATA] == ELFDATA2MSB ? "2's complement, big endian" : "2's complement, little endian");
+	printf("%s\n", e_ident[EI_DATA] == ELFDATA2MSB ? "2's complement, big endian" : "2's complement, little endian");
+}
+
+/**
+ * print_version - prints the version of an ELF header
+ * @e_ident: ELF header identifier
+ */
+void print_version(unsigned char *e_ident)
+{
 	printf("Version:                           ");
-	printf("%d%s\n", ehdr->e_ident[EI_VERSION], ehdr->e_ident[EI_VERSION] == EV_CURRENT ? " (current)" : "");
+	printf("%d%s\n", e_ident[EI_VERSION], e_ident[EI_VERSION] == EV_CURRENT ? " (current)" : "");
+}
+
+/**
+ * print_osabi - prints the OS/ABI of an ELF header
+ * @e_ident: ELF header identifier
+ */
+void print_osabi(unsigned char *e_ident)
+{
 	printf("OS/ABI:                            ");
-	switch (ehdr->e_ident[EI_OSABI])
+	switch (e_ident[EI_OSABI])
 	{
 		case ELFOSABI_SYSV:
 			printf("UNIX - System V");
@@ -43,12 +79,20 @@ void print_elf_header(Elf64_Ehdr *ehdr)
 			printf("UNIX - FreeBSD");
 			break;
 		default:
-			printf("<unknown: %x>", ehdr->e_ident[EI_OSABI]);
+			printf("<unknown: %x>", e_ident[EI_OSABI]);
 			break;
 	}
 	printf("\n");
+}
+
+/**
+ * print_abiversion - prints the ABI version of an ELF header
+ * @e_ident: ELF header identifier
+ */
+void print_abiversion(unsigned char *e_ident)
+{
 	printf("ABI Version:                       ");
-	printf("%d\n", ehdr->e_ident[EI_ABIVERSION]);
+	printf("%d\n", e_ident[EI_ABIVERSION]);
 }
 
 /**
@@ -81,7 +125,12 @@ int main(int argc, char **argv)
 		close(fd);
 		return (98);
 	}
-	print_elf_header(&ehdr);
+	print_magic(ehdr.e_ident);
+	print_class(ehdr.e_ident);
+	print_data(ehdr.e_ident);
+	print_version(ehdr.e_ident);
+	print_osabi(ehdr.e_ident);
+	print_abiversion(ehdr.e_ident);
 	close(fd);
 	return (0);
 }
