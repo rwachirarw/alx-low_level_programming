@@ -29,7 +29,6 @@ int main(int argc, char *argv[])
 	if (fd_to == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-		close(fd_from);
 		exit(99);
 	}
 
@@ -52,12 +51,18 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	if (close(fd_from) == -1 || close(fd_to) == -1)
+	if (close(fd_from) == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close one of the file descriptors\n");
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
+		close(fd_to);
+		exit(100);
+	}
+
+	if (close(fd_to) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
 		exit(100);
 	}
 
 	return (0);
 }
-
