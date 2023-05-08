@@ -1,115 +1,62 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <elf.h>
+#include "main.h"
 
-void print_error(char* msg)
+/**
+ * main - start of the program
+ * @argc: arguments count
+ * @argv: arguments
+ * Return: 0 on success, 98 on failure
+ */
+int main(int argc, char *argv[])
 {
-	fprintf(stderr, "Error: %s\n", msg);
-	exit(98);
-}
+	int fd;
+	Elf64_Ehdr *header;
 
-void print_elf_header(char* filename)
-{
-	int fd = open(filename, O_RDONLY);
-	Elf64_Ehdr header;
-
-	if (fd == -1)
-	{
-		print_error("Failed to open file");
-	}
-
-	if (read(fd, &header, sizeof(header)) != sizeof(header))
-	{
-		print_error("Failed to read ELF header");
-	}
-
-	if (memcmp(header.e_ident, ELFMAG, SELFMAG) != 0)
-	{
-		print_error("File is not an ELF file");
-	}
-
-	printf("Magic: ");
-	for (int i = 0; i < EI_NIDENT; i++)
-	{
-		printf("%02x ", header.e_ident[i]);
-	}
-	printf("\n");
-	printf("Class: %s\n", header.e_ident[EI_CLASS] == ELFCLASS32 ? "ELF32" : "ELF64");
-	printf("Data: %s\n", header.e_ident[EI_DATA] == ELFDATA2LSB ? "2's complement, little endian" : "2's complement, big endian");
-	printf("Version: %d\n", header.e_ident[EI_VERSION]);
-	printf("OS/ABI: ");
-	switch (header.e_ident[EI_OSABI])
-	{
-		case ELFOSABI_SYSV:
-			printf("UNIX - System V\n");
-			break;
-		case ELFOSABI_HPUX:
-			printf("UNIX - HP-UX\n");
-			break;
-		case ELFOSABI_NETBSD:
-			printf("UNIX - NetBSD\n");
-			break;
-		case ELFOSABI_LINUX:
-			printf("UNIX - Linux\n");
-			break;
-		case ELFOSABI_SOLARIS:
-			printf("UNIX - Solaris\n");
-			break;
-		case ELFOSABI_AIX:
-			printf("UNIX - AIX\n");
-			break;
-		case ELFOSABI_FREEBSD:
-			printf("UNIX - FreeBSD\n");
-			break;
-		case ELFOSABI_OPENBSD:
-			printf("UNIX - OpenBSD\n");
-			break;
-		default:
-			printf("<unknown>\n");
-			break;
-	}
-	printf("ABI Version: %d\n", header.e_ident[EI_ABIVERSION]);
-
-	printf("Type: ");
-	switch (header.e_type)
-	{
-		case ET_NONE:
-			printf("NONE (Unknown type)\n");
-			break;
-		case ET_REL:
-			printf("REL (Relocatable file)\n");
-			break;
-		case ET_EXEC:
-			printf("EXEC (Executable file)\n");
-			break;
-		case ET_DYN:
-			printf("DYN (Shared object file)\n");
-			break;
-		case ET_CORE:
-			printf("CORE (Core file)\n");
-			break;
-		default:
-			printf("<unknown>\n");
-			break;
-	}
-
-	printf("Entry point address: 0x%lx\n", header.e_entry);
-
-	close(fd);
-}
-
-int main(int argc, char* argv[])
-{
 	if (argc != 2)
-	{
-		print_error("Invalid arguments");
-	}
+		dprintf(STDERR_FILENO, "Usage: elf_header elf_filename\n"), exit(98);
 
-	print_elf_header(argv[1]);
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", argv[1]), exit(98);
+
+	header = malloc(sizeof(Elf64_Ehdr));
+	if (header == NULL)
+		dprintf(STDERR_FILENO, "Error: malloc failed\n"), exit(98);
+	if (read(fd, header, sizeof(Elf64_Ehdr)) != sizeof(Elf64_Ehdr))
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]), exit(98);
+
+	if (header->e_ident[EI_MAG0] != ELFMAG0 ||
+			header->e_ident[EI_MAG1] != ELFMAG1 ||
+			header->e_ident[EI_MAG2] != ELFMAG2 ||
+			header->e_ident[EI_MAG3] != ELFMAG3)
+		dprintf(STDERR_FILENO, "Error: Not an ELF file\n"), exit(98);
+
+	printf("ELF Header:\n");
+	printf("  Magic:   %02x %02x %02x %02x\n",
+			header->e_ident[EI_MAG0], header->e_ident[EI_MAG1],
+			header->e_ident[EI_MAG2], header->e_ident[EI_MAG3]);
+	printf("  Class:                             %s\n",
+			header->e_ident[EI_CLASS] == ELFCLASS32 ? "ELF32" : "ELF64");
+	printf("  Data:                              %s\n",
+			header->e_ident[EI_DATA] == ELFDATA2LSB ? "2's complement, little endian" : "2's complement, big endian");
+	printf("  Version:                           %d (current)\n", header->e_ident[EI_VERSION]);
+	printf("  OS/ABI:                            %s\n",
+			header->e_ident[EI_OSABI] == ELFOSABI_SYSV ? "UNIX - System V" : "UNIX - System V");
+	printf("  ABI Version:                       %d\n", header->e_ident[EI_ABIVERSION]);
+	printf("  Type:                              %s\n",
+			header->e_type == ET_EXEC ? "EXEC (Executable file)" : "EXEC (Executable file)");
+	printf("  Entry point address:               0x%lx (bytes into file)\n", header->e_entry);
+	printf("  Start of program headers:          %d (bytes into file)\n", header->e_phoff);
+	printf("  Start of section headers:          %d (bytes into file)\n", header->e_shoff);
+	printf("  Flags:                             0x%x\n", header->e_flags);
+	printf("  Size of this header:               %d (bytes)\n", header->e_ehsize);
+	printf("  Size of program headers:           %d (bytes)\n", header->e_phentsize);
+	printf("  Number of program headers:         %d\n", header->e_phnum);
+	printf("  Size of section headers:           %d (bytes)\n", header->e_shentsize);
+	printf("  Number of section headers:         %d\n", header->e_shnum);
+	printf("  Section header string table index: %d\n", header->e_shstrndx);
+
+	if (close(fd) == -1)
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd), exit(98);
 
 	return (0);
 }
-
