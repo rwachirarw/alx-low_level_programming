@@ -1,11 +1,11 @@
-#include "main.h"
+#include "calc.h"
 /**
- * division - add two numbers
+ * div - add two numbers
  * @a: first number
  * @b: second number
  * Return: div
  */
-int division(int a, int b)
+int div(int a, int b)
 {
 	if (b == 0)
 		return (0);

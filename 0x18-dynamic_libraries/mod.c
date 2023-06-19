@@ -1,4 +1,4 @@
-#include "main.h"
+#include "calc.h"
 /**
  * mod - find the remainder of two numbers
  * @a: first number

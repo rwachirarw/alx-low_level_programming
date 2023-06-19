@@ -1,4 +1,4 @@
-#include "main.h"
+#include "calc.h"
 /**
  * sub - subtracts two numbers
  * @a: first number
