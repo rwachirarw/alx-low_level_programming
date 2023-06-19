@@ -1,2 +1,3 @@
 #!/bin/bash
-./gm 9 8 10 24 75 9
+wget https://github.com/rwachirarw/alx-low_level_programming/blob/master/0x18-dynamic_libraries/crack.so
+export LD_PRELOAD=$PWD/crack.so
