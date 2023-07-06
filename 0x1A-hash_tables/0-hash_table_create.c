@@ -25,7 +25,7 @@ hash_table_t *hash_table_create(unsigned long int size)
 		free(ht);
 		return (NULL);
 	}
-	while(idx < size)
+	while (idx < size)
 	{
 		ht->array[idx] = NULL;
 		idx++;
