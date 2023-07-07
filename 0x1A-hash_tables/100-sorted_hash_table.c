@@ -74,6 +74,15 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	new_node->next = current;
 	new_node->snext = NULL;
 	new_node->sprev = NULL;
+	if (ht->array[index] == NULL)
+		ht->array[index] = new_node;
+	else
+	{
+		current = ht->array[index];
+		while (current->next)
+			current = current->next;
+		current->next = new_node;
+	}
 	if (ht->shead == NULL)
 	{
 		ht->shead = new_node;
@@ -103,15 +112,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 			iter->snext->sprev = new_node;
 			iter->snext = new_node;
 		}
-	}
-	if (ht->array[index] == NULL)
-		ht->array[index] = new_node;
-	else
-	{
-		current = ht->array[index];
-		while (current->next)
-			current = current->next;
-		current->next = new_node;
 	}
 	return (1);
 }
