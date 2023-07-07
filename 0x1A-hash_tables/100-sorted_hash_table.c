@@ -52,7 +52,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	shash_node_t *current = NULL;
 	shash_node_t *iter = NULL;
 
-	if (!ht || !key || !value)
+	if (!ht || !key || !(ht->array) || !(*key) || !value)
 		return (0);
 	index = key_index((unsigned char *)key, ht->size);
 	current = ht->array[index];
@@ -121,13 +121,13 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
  * @ht: hash table
  * @key: key to look for
  * Return: value
-*/
+ */
 char *shash_table_get(const shash_table_t *ht, const char *key)
 {
 	unsigned long int index;
 	shash_node_t *iter = NULL;
 
-	if (ht == NULL)
+	if (!ht || !(ht->array) || !key || !(*key))
 		return (NULL);
 
 	index = key_index((unsigned char *)key, ht->size);
@@ -150,7 +150,7 @@ void shash_table_print(const shash_table_t *ht)
 	shash_node_t *iter = NULL;
 	int flagged = 1;
 
-	if (ht == NULL)
+	if (!ht || !(ht->array))
 		return;
 	printf("{");
 	iter = ht->shead;
