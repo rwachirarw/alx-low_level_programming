@@ -78,10 +78,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		ht->array[index] = new_node;
 	else
 	{
-		current = ht->array[index];
-		while (current->next)
-			current = current->next;
-		current->next = new_node;
+		new_node->next = ht->array[index];
+		ht->array[index] = new_node;
 	}
 	if (ht->shead == NULL)
 	{
