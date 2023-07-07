@@ -1,5 +1,5 @@
 #include "hash_tables.h"
-
+int shash_table_set(shash_table_t *ht, const char *key, const char *value);
 /**
  * shash_table_set - sets a hash table
  * @ht: shash table
